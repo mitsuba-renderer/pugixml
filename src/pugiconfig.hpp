@@ -14,6 +14,10 @@
 #ifndef HEADER_PUGICONFIG_HPP
 #define HEADER_PUGICONFIG_HPP
 
+#ifdef _MSC_VER
+#  pragma warning (disable: 4275)
+#endif
+
 // Uncomment this to enable wchar_t mode
 // #define PUGIXML_WCHAR_MODE
 
@@ -28,6 +32,16 @@
 
 // Uncomment this to disable exceptions
 // #define PUGIXML_NO_EXCEPTIONS
+
+#ifdef _WIN32
+#  ifdef PUGIXML_BUILD_DLL
+#    define PUGIXML_API __declspec(dllexport)
+#  else
+#    define PUGIXML_API __declspec(dllimport)
+#  endif
+#else
+#  define PUGIXML_API __attribute__ ((visibility("default")))
+#endif
 
 // Set this to control attributes for public classes/functions, i.e.:
 // #define PUGIXML_API __declspec(dllexport) // to export all public symbols from DLL
