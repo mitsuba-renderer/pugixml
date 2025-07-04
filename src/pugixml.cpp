@@ -4196,8 +4196,9 @@ PUGI_IMPL_NS_BEGIN
 				}
 				else
 				{
-					if ((flags & format_raw) == 0)
-						writer.write(' ');
+                    // wenzel: removed this extra space before the closing tag
+					//if ((flags & format_raw) == 0)
+					//	writer.write(' ');
 
 					writer.write('/', '>');
 
